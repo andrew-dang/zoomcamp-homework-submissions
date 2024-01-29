@@ -94,5 +94,5 @@ ORDER BY largest_tip DESC;
 The output of the command has been provided in the submission form. 
 
 The Terraform code used for this question can be found in the `code` folder. The GCP credentials key for the service account created
-for Terraform have intentionally been left out. Please note that the value for the variables in the `variables.tf` folder are 
+for Terraform have intentionally been left out. Please note that the value for the variables in the `variables.tf` file are 
 placeholders and not reflective of the actual values used to execute the commands. 
