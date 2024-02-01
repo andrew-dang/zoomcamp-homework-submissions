@@ -20,3 +20,7 @@ Four columns needed to be renamed to snake case. The following columns were the 
 
 ## Question 6: Data Exporting - Once exported, how many partitions (folders) are present in Google Cloud?
 After exporting to Google Cloud Storage, there were 95 partitions present. 
+
+## Regarding ETL code
+The code for to extract, transform and load the NYC Green Taxi Trips can be found in the (code)[https://github.com/andrew-dang/zoomcamp-homework-submissions/tree/main/week_2/code] folder. 
+The folder has been structured to reflect the file structure of Mage. 
