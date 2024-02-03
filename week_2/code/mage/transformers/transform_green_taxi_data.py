@@ -68,7 +68,7 @@ def test_output(output, *args) -> None:
 
 @test 
 def test_vendor_id(output, *args) -> None:
-    assert "vendor_id" in output.columns, "'vendor_id' is not an existing column"
+    assert output['vendor_id'].isin([1,2]).sum() == output.shape[0] , "'vendor_id' has invalid values"
 
 @test 
 def test_passenger_count(output, *args) -> None:
