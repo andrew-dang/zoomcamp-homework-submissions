@@ -1,0 +1,19 @@
+sources:
+- description: Dataframes Mage upstream blocks
+  loader: mage
+  name: mage_dbt_mage_project
+  schema: dev
+  tables:
+  - description: Dataframe for block `dlt` of the `cozy_merchant` mage pipeline.
+    identifier: mage_cozy_merchant_dlt
+    meta:
+      block_uuid: dlt
+      pipeline_uuid: cozy_merchant
+    name: cozy_merchant_dlt
+  - description: Dataframe for block `dlt` of the `dlt_postgres_dbt` mage pipeline.
+    identifier: mage_dlt_postgres_dbt_dlt
+    meta:
+      block_uuid: dlt
+      pipeline_uuid: dlt_postgres_dbt
+    name: dlt_postgres_dbt_dlt
+version: 2

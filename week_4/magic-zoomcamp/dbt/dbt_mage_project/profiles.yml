@@ -1,0 +1,21 @@
+dbt_mage_project:
+  outputs:
+    dev:
+      dbname: production
+      host: postgres
+      pass: dev
+      port: 5432
+      schema: dev
+      threads: 4
+      type: postgres
+      user: dev
+    prod:
+      dbname: production
+      host: postgres
+      pass: prod_password
+      port: 5432
+      schema: prod
+      threads: 4
+      type: postgres
+      user: prod_user
+  target: dev

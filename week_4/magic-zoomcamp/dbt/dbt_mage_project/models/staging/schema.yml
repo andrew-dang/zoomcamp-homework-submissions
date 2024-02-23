@@ -1,0 +1,17 @@
+
+version: 2
+
+sources: 
+  - name: staging
+    database: production
+    schema: dev
+
+    tables:
+      - name: src_green_tripdata
+      - name: src_yellow_tripdata
+      - name: src_fhv_tripdata
+
+models:
+  - name: stg_green
+  - name: stg_yellow
+  - name: stg_fhv

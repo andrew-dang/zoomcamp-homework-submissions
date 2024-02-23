@@ -1,0 +1,2 @@
+dlt[postgres]
+pandas==2.2.0

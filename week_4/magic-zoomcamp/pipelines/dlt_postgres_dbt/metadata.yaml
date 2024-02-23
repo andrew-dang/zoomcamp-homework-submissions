@@ -1,0 +1,93 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - dlt
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: download_data
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: download_data
+- all_upstream_blocks_executed: false
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - dbt_build_all
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: dlt
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_exporter
+  upstream_blocks:
+  - download_data
+  uuid: dlt
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    dbt:
+      command: build
+    dbt_profile_target: ''
+    dbt_project_name: dbt/dbt_mage_project
+    disable_query_preprocessing: false
+    export_write_policy: append
+    file_source:
+      path: dbts/dbt_build_all.yaml
+    use_raw_sql: false
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: yaml
+  name: dbt_build_all
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - dlt
+  uuid: dbt_build_all
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-02-21 21:03:56.487056+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: dlt-postgres-dbt
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+updated_at: '2024-02-23T02:30:04+00:00'
+uuid: dlt_postgres_dbt
+variables:
+  colors:
+  - green
+  - yellow
+  - fhv
+  months:
+  - 1
+  years:
+  - 2019
+variables_dir: /home/src/mage_data/magic-zoomcamp
+widgets: []
