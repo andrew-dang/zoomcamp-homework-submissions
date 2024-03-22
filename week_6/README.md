@@ -17,7 +17,7 @@ test-topic  OK
 Output of last command (`bootstrap_connected()` method) was `True`.
 
 ## Q4
-0.67 seconds
+It took 0.67 seconds to send data to the test topic.  
 Based on the output, it took more time to send the messages than flushing. 
 
 ## Q5
