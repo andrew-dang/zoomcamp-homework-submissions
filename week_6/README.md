@@ -7,8 +7,11 @@ v22.3.5 (rev 28b2443)
 
 ## Q2
 Below is the output after executing the `rpk topic create test-topic` command. 
+
+```
 TOPIC       STATUS
 test-topic  OK
+```
 
 ## Q3
 Output of last command (`bootstrap_connected()` method) was `True`.
