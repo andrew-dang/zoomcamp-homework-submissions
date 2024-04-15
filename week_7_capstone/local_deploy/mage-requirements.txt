@@ -2,4 +2,5 @@ dlt[duckdb]
 dlt[parquet]
 dlt[bigquery]
 pandas
+duckdb
 nba_api
