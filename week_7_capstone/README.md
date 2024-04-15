@@ -44,6 +44,8 @@ This project can also be deployed in GCP. The Terraform files have been made ava
     - `docker build -f MageDockerfile -t mage_dlt_nba:latest .`
     - `docker tag mage_dlt_nba:latest <REGION>-docker.pkg.dev/<PROJECT_ID>/<ARTIFACT_REGISTRY_REPO>/mageai:latest`
     - `docker push <REGION>-docker.pkg.dev/<PROJECT_ID>/<ARTIFACT_REGISTRY_REPO>/mageai:latest`
-4. Run `terraform apply`. 
-5. Run the `seed_bigquery` and `daily_load_bigquery` pipelines. 
-6. Connect to Looker Studio and develop similar dashboard as the link above. 
+4. Edit configs in Mage project; profiles.yml, .dlt/secrets.toml
+5. Edit terraform files, especially the variables. 
+6. Run `terraform apply`. 
+7. Run the `seed_bigquery` and `daily_load_bigquery` pipelines. 
+8. Connect to Looker Studio and develop similar dashboard as the link above. 
