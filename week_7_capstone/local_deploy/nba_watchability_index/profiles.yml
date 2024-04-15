@@ -1,0 +1,13 @@
+# https://docs.getdbt.com/docs/core/connect-data-platform/profiles.yml
+
+nba_watchability_index:
+  target: dev
+  outputs:
+    dev:
+      type: duckdb
+      path: '../duckdb_files/database.db'
+      schema: staging
+    prod:
+      type: duckdb
+      path: '../duckdb_files/database.db'
+      schema: prod

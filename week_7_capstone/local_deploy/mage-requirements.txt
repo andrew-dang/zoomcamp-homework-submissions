@@ -1,0 +1,5 @@
+dlt[duckdb]
+dlt[parquet]
+dlt[bigquery]
+pandas
+nba_api

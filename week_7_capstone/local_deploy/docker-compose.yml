@@ -1,0 +1,45 @@
+version: '3'
+services:
+  magic:
+    image: mage_dlt_nba:latest
+    command: >
+      sh -c "mage start ${PROJECT_NAME}"
+    env_file:
+      - .env
+    build:
+      context: .
+      dockerfile: MageDockerfile
+    environment:
+      USER_CODE_PATH: /home/src/${PROJECT_NAME}
+    ports:
+      - 6789:6789
+    volumes:
+      - .:/home/src/
+    restart: on-failure:5
+  metabase_backend: 
+      image: postgres:14
+      hostname: backend
+      container_name: backend
+      env_file:
+        - ./env_files/metabase_backend/.env
+      volumes:
+        - "./metaduck_backend:/var/lib/postgresql/data:rw"
+      ports:
+        - "5433:5432"
+  metaduck:
+    container_name: metaduck
+    image: metaduck:latest
+    build: 
+      context: . 
+      dockerfile: MetabaseDockerfile
+      tags: 
+        - metaduck:latest
+    env_file:
+      - ./env_files/metabase/.env
+    # Mount duckdb database to metabase container
+    volumes:
+      - "./mage_nba_watchability_index/dbt/nba_watchability_index/duckdb_files:/container/directory"
+    ports: 
+      - "3000:3000"
+    depends_on:
+      - metabase_backend
