@@ -23,15 +23,22 @@ There are some limitations to this project when deployed on the cloud. The NBA.c
     - Password: publicuser1
 5. Navigate to dashboard. 
 
-
-
 ### Cloud Deployment
 This project can also be deployed in GCP. The Terraform files have been made available. Below are some additional steps to setup the project. 
 
 #### Cloud Deployment Instructions
 1. Create a Service Account for Terraform. It will need the following permissions:
-    - 
-    - 
+    - Artifact Registry Administrator
+    - BigQuery Admin
+    - Cloud Filestore Editor 
+    - Cloud Filestore Service Agent
+    - Cloud SQL Admin 
+    - Project IAM Admin 
+    - Secret Manager Admin
+    - Secret Manager Secret Accessor
+    - Serverless VPC Access Admin 
+    - Service Account User
+    - Service Usage Admin
 2. Create a secret in Secret Manager. The secret name should be `service_account_credentials`. The value of this secret should be the private key of the Terraform Service Account. 
 3. Create the Docker image to run Mage in the cloud, and push to the Artifact Registry. In a terminal, open the `cloud_deploy` folder and run the following commands by replacing the values between the <> with the values relevant to your project. 
     - `docker build -f MageDockerfile -t mage_dlt_nba:latest .`
