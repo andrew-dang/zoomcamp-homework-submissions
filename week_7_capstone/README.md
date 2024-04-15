@@ -5,7 +5,7 @@ The goal of this project was to develop an index which uses a number of computed
 
 Currently, this watchability index factors in things like the strength of each team, the number of star players each roster is fielding, the teams head-to-head record, and the average point differential in their previous games. All this information is fed into the index in order to come up with a single number to measure how watchable a game might be. 
 
-You find a Looker Studio dashboard [here](https://lookerstudio.google.com/reporting/6594d61d-b820-4876-9dda-b7c1f05384d8).
+You find a Looker Studio dashboard [here](https://lookerstudio.google.com/s/vtKFqGkKAt8).
 
 ## About the Data
 NBA.com has made the data available through their API, and Swar Patel has made a [Python library](https://github.com/swar/nba_api) to enable easy access to the API for Python developers. All the data used for this project was collected using this API. 
