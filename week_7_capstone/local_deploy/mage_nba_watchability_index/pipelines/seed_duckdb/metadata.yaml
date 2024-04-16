@@ -12,12 +12,12 @@ blocks:
   language: python
   name: api_to_duckdb
   retry_config: null
-  status: failed
+  status: executed
   timeout: null
   type: data_loader
   upstream_blocks: []
   uuid: api_to_duckdb
-- all_upstream_blocks_executed: false
+- all_upstream_blocks_executed: true
   color: null
   configuration:
     dbt:
@@ -63,7 +63,7 @@ settings:
 spark_config: {}
 tags: []
 type: python
-updated_at: '2024-04-15 03:54:44'
+updated_at: '2024-04-16 12:33:52'
 uuid: seed_duckdb
 variables_dir: /home/src/mage_data/mage_nba_watchability_index
 widgets: []
