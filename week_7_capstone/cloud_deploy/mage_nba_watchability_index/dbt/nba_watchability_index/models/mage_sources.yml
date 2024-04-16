@@ -1,0 +1,32 @@
+sources:
+- description: Dataframes Mage upstream blocks
+  loader: mage
+  name: mage_nba_watchability_index
+  schema: nba_api
+  tables:
+  - description: Dataframe for block `api_to_bigquery` of the `nba_api_to_bigquery`
+      mage pipeline.
+    identifier: mage_nba_api_to_bigquery_api_to_bigquery
+    meta:
+      block_uuid: api_to_bigquery
+      pipeline_uuid: nba_api_to_bigquery
+    name: nba_api_to_bigquery_api_to_bigquery
+  - description: Dataframe for block `api_to_bigquery` of the `seed_bq` mage pipeline.
+    identifier: mage_seed_bq_api_to_bigquery
+    meta:
+      block_uuid: api_to_bigquery
+      pipeline_uuid: seed_bq
+    name: seed_bq_api_to_bigquery
+  - description: Dataframe for block `daily_load` of the `colossal_moon` mage pipeline.
+    identifier: mage_colossal_moon_daily_load
+    meta:
+      block_uuid: daily_load
+      pipeline_uuid: colossal_moon
+    name: colossal_moon_daily_load
+  - description: Dataframe for block `daily_load` of the `daily_load` mage pipeline.
+    identifier: mage_daily_load_daily_load
+    meta:
+      block_uuid: daily_load
+      pipeline_uuid: daily_load
+    name: daily_load_daily_load
+version: 2

@@ -1,0 +1,14 @@
+version: 2
+
+sources:
+  - name: nba_api
+    database: leafy-valor-420311
+    schema: nba_api
+    tables:
+      - name: src_daily_standings
+      - name: src_dim_player
+      - name: src_player_stats
+      - name: src_team
+      - name: src_teamlogs
+      - name: temp_daily_schedule
+

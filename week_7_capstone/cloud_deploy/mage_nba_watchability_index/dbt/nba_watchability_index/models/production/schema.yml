@@ -1,0 +1,11 @@
+version: 2
+
+models: 
+  - name: d_daily_schedule
+  - name: d_players
+  - name: d_teams
+  - name: f_current_standings
+  - name: f_daily_standings
+  - name: f_head_to_head
+  - name: f_player_stats
+  - name: f_watchability_index

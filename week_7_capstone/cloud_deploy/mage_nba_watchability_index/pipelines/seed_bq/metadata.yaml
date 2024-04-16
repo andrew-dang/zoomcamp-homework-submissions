@@ -1,0 +1,67 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - dbt_build_all
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: api_to_bigquery
+  retry_config: null
+  status: executed
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: api_to_bigquery
+- all_upstream_blocks_executed: true
+  color: null
+  configuration:
+    dbt:
+      command: build
+    dbt_profile_target: ''
+    dbt_project_name: dbt/nba_watchability_index
+    disable_query_preprocessing: false
+    export_write_policy: append
+    file_source:
+      path: dbts/dbt_build_all.yaml
+    use_raw_sql: false
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: yaml
+  name: dbt_build_all
+  retry_config: null
+  status: executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - api_to_bigquery
+  uuid: dbt_build_all
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-04-14 02:14:56.921615+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: seed_bq
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+updated_at: '2024-04-14 19:29:49'
+uuid: seed_bq
+variables_dir: /home/src/mage_data/mage_nba_watchability_index
+widgets: []

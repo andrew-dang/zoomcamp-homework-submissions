@@ -1,0 +1,1 @@
+2024-04-14T16:33:46 {"block_run_id": 8, "block_uuid": "api_to_bigquery", "pipeline_run_id": 4, "pipeline_schedule_id": 4, "pipeline_uuid": "seed_bq", "hostname": "78c121f5c730", "block_type": "data_loader", "level": "INFO", "message": "Start executing block with BlockExecutor.", "timestamp": 1713112426.266044, "uuid": "1d05b16d248b4299927c2ecf865f9eb4"}

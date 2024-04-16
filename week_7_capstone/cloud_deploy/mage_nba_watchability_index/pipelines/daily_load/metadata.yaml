@@ -1,0 +1,66 @@
+blocks:
+- all_upstream_blocks_executed: true
+  color: null
+  configuration: {}
+  downstream_blocks:
+  - dbt_build_all
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: python
+  name: daily_load
+  retry_config: null
+  status: updated
+  timeout: null
+  type: data_loader
+  upstream_blocks: []
+  uuid: daily_load
+- all_upstream_blocks_executed: false
+  color: null
+  configuration:
+    dbt: {}
+    dbt_profile_target: ''
+    dbt_project_name: dbt/nba_watchability_index
+    disable_query_preprocessing: false
+    export_write_policy: append
+    file_source:
+      path: dbts/dbt_build_all.yaml
+    use_raw_sql: false
+  downstream_blocks: []
+  executor_config: null
+  executor_type: local_python
+  has_callback: false
+  language: yaml
+  name: dbt_build_all
+  retry_config: null
+  status: not_executed
+  timeout: null
+  type: dbt
+  upstream_blocks:
+  - daily_load
+  uuid: dbt_build_all
+cache_block_output_in_memory: false
+callbacks: []
+concurrency_config: {}
+conditionals: []
+created_at: '2024-04-14 15:38:48.444460+00:00'
+data_integration: null
+description: null
+executor_config: {}
+executor_count: 1
+executor_type: null
+extensions: {}
+name: daily_load
+notification_config: {}
+remote_variables_dir: null
+retry_config: {}
+run_pipeline_in_one_process: false
+settings:
+  triggers: null
+spark_config: {}
+tags: []
+type: python
+updated_at: '2024-04-14T15:45:59+00:00'
+uuid: daily_load
+variables_dir: /home/src/mage_data/mage_nba_watchability_index
+widgets: []

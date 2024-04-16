@@ -1,0 +1,17 @@
+# https://docs.getdbt.com/docs/core/connect-data-platform/profiles.yml
+
+nba_watchability_index:
+  target: dev
+  outputs:
+    dev:
+      type: bigquery
+      method: service-account
+      project: 
+      dataset: nba_api
+      keyfile: 
+    prod:
+      type: bigquery
+      method: service-account
+      project: 
+      dataset: nba_api_prod
+      keyfile: 
