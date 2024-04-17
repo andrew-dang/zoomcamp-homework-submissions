@@ -8,13 +8,15 @@ import dlt
 import duckdb
 import pandas as pd
 
+MY_PROXY = 'your.proxy.address.here'
+
 # Helper functions for data loading
 def get_teams_basic():
     """
     This endpoint provides information about teams, notably the team's ID, 
     full name, abbreviation, nickname, and city. 
     """
-    nba_teams = teams.get_teams()
+    nba_teams = teams.get_teams(proxy=MY_PROXY)
     nba_teams_df = pd.DataFrame.from_records(nba_teams)
 
     return nba_teams_df
@@ -27,7 +29,7 @@ def get_team_info_common(team_id_list: list):
     """
     records = []
     for team_id in team_id_list:
-        team = teaminfocommon.TeamInfoCommon(team_id=team_id).team_info_common.get_data_frame().to_dict(orient='records')
+        team = teaminfocommon.TeamInfoCommon(team_id=team_id, proxy=MY_PROXY).team_info_common.get_data_frame().to_dict(orient='records')
         records.append(team[0])
 
     team_info_common_df = pd.DataFrame.from_records(records)
@@ -49,7 +51,7 @@ def get_opponent_abbreviation(matchup: str):
 
 @dlt.resource(name="src_dim_player", write_disposition="replace")
 def load_dim_player():
-    players_df = playerindex.PlayerIndex().player_index.get_data_frame()
+    players_df = playerindex.PlayerIndex(proxy=MY_PROXY).player_index.get_data_frame()
 
     yield players_df
 
@@ -66,8 +68,8 @@ def load_daily_standings(initial_load: bool = False):
             
             try:
                 # Get daily standings
-                ec = sb.ScoreboardV2().east_conf_standings_by_day.get_data_frame()
-                wc = sb.ScoreboardV2().west_conf_standings_by_day.get_data_frame()
+                ec = sb.ScoreboardV2(proxy=MY_PROXY).east_conf_standings_by_day.get_data_frame()
+                wc = sb.ScoreboardV2(proxy=MY_PROXY).west_conf_standings_by_day.get_data_frame()
 
                 ec['STANDINGSDATE'] = pd.to_datetime(ec['STANDINGSDATE'], format="%m/%d/%Y")
                 wc['STANDINGSDATE'] = pd.to_datetime(ec['STANDINGSDATE'], format="%m/%d/%Y")
@@ -88,8 +90,8 @@ def load_daily_standings(initial_load: bool = False):
             except:
                 print(f"Retrying loading current standings...")
                 # Get daily standings
-                ec = sb.ScoreboardV2().east_conf_standings_by_day.get_data_frame()
-                wc = sb.ScoreboardV2().west_conf_standings_by_day.get_data_frame()
+                ec = sb.ScoreboardV2(proxy=MY_PROXY).east_conf_standings_by_day.get_data_frame()
+                wc = sb.ScoreboardV2(proxy=MY_PROXY).west_conf_standings_by_day.get_data_frame()
 
                 ec['STANDINGSDATE'] = pd.to_datetime(ec['STANDINGSDATE'], format="%m/%d/%Y")
                 wc['STANDINGSDATE'] = pd.to_datetime(ec['STANDINGSDATE'], format="%m/%d/%Y")
@@ -124,8 +126,8 @@ def load_daily_standings(initial_load: bool = False):
             for attempts in range(5):
                 try:
                     # Get daily standings
-                    ec = sb.ScoreboardV2(day_offset=-day_offset).east_conf_standings_by_day.get_data_frame()
-                    wc = sb.ScoreboardV2(day_offset=-day_offset).west_conf_standings_by_day.get_data_frame()
+                    ec = sb.ScoreboardV2(day_offset=-day_offset, proxy=MY_PROXY).east_conf_standings_by_day.get_data_frame()
+                    wc = sb.ScoreboardV2(day_offset=-day_offset, proxy=MY_PROXY).west_conf_standings_by_day.get_data_frame()
 
                     # Convert STANDINGSDATE to datetime
                     ec['STANDINGSDATE'] = pd.to_datetime(ec['STANDINGSDATE'], format="%m/%d/%Y")
@@ -148,8 +150,8 @@ def load_daily_standings(initial_load: bool = False):
                 except:
                     print(f"Retrying getting data for {day_offset} days from today...")
                     # Get daily standings
-                    ec = sb.ScoreboardV2(day_offset=-day_offset).east_conf_standings_by_day.get_data_frame()
-                    wc = sb.ScoreboardV2(day_offset=-day_offset).west_conf_standings_by_day.get_data_frame()
+                    ec = sb.ScoreboardV2(day_offset=-day_offset, proxy=MY_PROXY).east_conf_standings_by_day.get_data_frame()
+                    wc = sb.ScoreboardV2(day_offset=-day_offset, proxy=MY_PROXY).west_conf_standings_by_day.get_data_frame()
                      
                     # Convert STANDINGSDATE to datetime
                     ec['STANDINGSDATE'] = pd.to_datetime(ec['STANDINGSDATE'], format="%m/%d/%Y")
@@ -179,7 +181,7 @@ def load_daily_standings(initial_load: bool = False):
 
 @dlt.resource(name='src_player_stats', write_disposition='replace')
 def load_player_stats():
-    player_stats_df = ldps.LeagueDashPlayerStats(per_mode_detailed="PerGame").league_dash_player_stats.get_data_frame()
+    player_stats_df = ldps.LeagueDashPlayerStats(per_mode_detailed="PerGame", proxy=MY_PROXY).league_dash_player_stats.get_data_frame()
 
     yield player_stats_df
 
@@ -224,7 +226,7 @@ def load_teamlogs():
     ]
     
     # Get team logs
-    teamlogs = tgl.TeamGameLogs(season_nullable="2023-24").team_game_logs.get_data_frame()
+    teamlogs = tgl.TeamGameLogs(season_nullable="2023-24", proxy=MY_PROXY).team_game_logs.get_data_frame()
     sel_teamlogs = teamlogs[SEL_COLS]
 
     # Get opponent abbreviation. This will be used to calculate head-to-head stats downstream. 
@@ -234,7 +236,7 @@ def load_teamlogs():
 
 @dlt.resource(name='temp_daily_schedule', write_disposition='replace')
 def load_daily_schedule():
-    todays_scoreboard = scoreboard.ScoreBoard().get_dict()['scoreboard']
+    todays_scoreboard = scoreboard.ScoreBoard(proxy=MY_PROXY).get_dict()['scoreboard']
 
     # Store records
     records = []

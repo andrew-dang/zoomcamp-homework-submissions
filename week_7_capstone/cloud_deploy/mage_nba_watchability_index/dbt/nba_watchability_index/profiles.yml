@@ -6,12 +6,7 @@ nba_watchability_index:
     dev:
       type: bigquery
       method: service-account
-      project: 
+      project: <YOUR_PROJECT_ID>
       dataset: nba_api
-      keyfile: 
-    prod:
-      type: bigquery
-      method: service-account
-      project: 
-      dataset: nba_api_prod
-      keyfile: 
+      keyfile: /home/src/gcp_service_accounts/<your_key.json>
+
